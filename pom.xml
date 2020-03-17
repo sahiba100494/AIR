@@ -33,7 +33,23 @@
     java -jar target/javaparser-maven-sample-1.0-SNAPSHOT-shaded.jar
     -->
     <build>
+	    <reporting>
         <plugins>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <rulesets>
+            <!-- A rule set, that comes bundled with PMD -->
+            <ruleset>/category/java/bestpractices.xml</ruleset>
+            <!-- Custom local file system rule set -->
+            <ruleset>d:\rulesets\strings.xml</ruleset>
+            <!-- Custom remote rule set accessed via a URL -->
+            <ruleset>http://localhost/design.xml</ruleset>
+          </rulesets>
+        </configuration>
+      </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -55,6 +71,7 @@
                     </execution>
                 </executions>
             </plugin>
+			</reporting>
         </plugins>
     </build>
 </project>
